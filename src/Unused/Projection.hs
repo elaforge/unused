@@ -39,6 +39,9 @@ transformsParser = transformParser `sepBy` char '|' <* char '}'
 postTransformsParser :: Parser Text
 postTransformsParser = T.pack <$> many anyChar
 
+anyChar :: Parser Char
+anyChar = satisfy (const True)
+
 transformParser :: Parser Transform
 transformParser = do
     result <- string "camelcase" <|> string "snakecase"
